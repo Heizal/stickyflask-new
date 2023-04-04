@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+
+{%block title%}Sticky{%endblock%}
+
+{%block body%}
+    <div class="contact-navbar">
+        <ul>
+            <li><a href="/">Go to Home</a></li>
+        </ul>
+    </div>
+    <h1 class="notes-heading">My Sticky Notes</h1>
+    <ul class="notes-list">
+        {% for slug in notes.keys()%}
+        <li><input type="checkbox">
+            <a href="notes/{{slug}}" class="notes-name">{{slug}}</a>
+        </li>
+        {%endfor%}
+    </ul>
+{% endblock %}
+</html>

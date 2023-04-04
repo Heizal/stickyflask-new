@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+
+{%block title%}Sticky{%endblock%}
+
+{%block body%}
+    <div class="contact-navbar">
+        <ul>
+            <li><a href="/notes">See my tasks</a></li>
+        </ul>
+    </div>
+    <ul class="notes-list">
+        <li>
+            <h2 class="notes-heading">{{note['title']}}</h2>
+            <h3>{{note['content']}}</h3>
+            <h4>{{note['createdAt']}}</h4>
+        </li>
+    </ul>
+{% endblock %}
+</html>
