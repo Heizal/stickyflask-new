@@ -1,23 +1,17 @@
+from .models import Note
 from flask import Blueprint, render_template
-
-# Notes template dictionary
-note_data = {
-  'Groceries' : {'content': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam sequi error aliquid.', 'createdAt': 'DD/MM/YYYY', 'title':'Groceries'},
-  'Class Assignment' : {'content': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam sequi error aliquid.', 'createdAt': 'DD/MM/YYYY','title':'Class Assignment'},
-  'My thoughts' : {'content': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam sequi error aliquid.', 'createdAt': 'DD/MM/YYYY', 'title':'My thoughts'},
-  'Class notes for Wednesday' : {'content': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam sequi error aliquid.', 'createdAt': 'DD/MM/YYYY', 'title':'Class notes for Wednesday'},
-  'To buy on Friday' : {'content': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam sequi error aliquid.', 'createdAt': 'DD/MM/YYYY', 'title':'To buy on Friday'},
-}
 
 blueprint = Blueprint('notes', __name__)
 
 # Notes route
 @blueprint.route('/notes')
 def notes():
-    return render_template('notes/notes.html' , notes=note_data)
+    all_notes = Note.query.all()
+    return render_template('notes/notes.html' , notes=all_notes)
 
 @blueprint.route('/notes/<slug>')
 def note(slug):
     # return slug
-    x = note_data[slug]
-    return render_template('notes/tasks.html', note=x)
+    note = Note.query.filter_by(slug=slug).first()
+    #x = note_data[slug]
+    return render_template('notes/tasks.html', note=note)

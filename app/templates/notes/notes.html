@@ -12,9 +12,9 @@
     </div>
     <h1 class="notes-heading">My Sticky Notes</h1>
     <ul class="notes-list">
-        {% for slug in notes.keys()%}
+        {% for note in notes%}
         <li><input type="checkbox">
-            <a href="notes/{{slug}}" class="notes-name">{{slug}}</a>
+            <a href="notes/{{note.slug}}" class="notes-name">{{note.slug}}</a>
         </li>
         {%endfor%}
     </ul>
