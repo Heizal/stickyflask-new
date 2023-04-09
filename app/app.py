@@ -6,6 +6,7 @@ def create_app():
     app = Flask(__name__)
     #app.config.from_object('app.config')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+    app.config['NOTES_PER_PAGE'] = 4
 
     register_blueprints(app)
     register_extensions(app)

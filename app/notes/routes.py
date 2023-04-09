@@ -1,13 +1,14 @@
 from .models import Note
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, current_app
 
 blueprint = Blueprint('notes', __name__)
 
 # Notes route
 @blueprint.route('/notes')
 def notes():
-    all_notes = Note.query.all()
-    return render_template('notes/notes.html' , notes=all_notes)
+    page_number = request.args.get('page', 1, type=int)
+    notes_pagination = Note.query.paginate(page=page_number, per_page=current_app.config['NOTES_PER_PAGE'])
+    return render_template('notes/notes.html', notes_pagination=notes_pagination)
 
 @blueprint.route('/notes/<slug>')
 def note(slug):

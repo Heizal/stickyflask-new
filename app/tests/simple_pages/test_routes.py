@@ -17,7 +17,7 @@ def test_index_content(client):
     assert b'Note taking made easier' in response.data
 
 def test_contact_content(client):
-    # returns content on index page
+    # returns content on contact page
     response = client.get('/contact')
     assert b'Have questions about how to use Sticky?' in response.data
 
