@@ -16,3 +16,11 @@ def note(slug):
     note = Note.query.filter_by(slug=slug).first()
     #x = note_data[slug]
     return render_template('notes/tasks.html', note=note)
+
+@blueprint.route('/run-seed')
+def run_seed():
+    if not Note.query.filter_by(slug='Groceries').first():
+        import app.scripts.seed
+        return 'Database seed completed!'
+    else:
+        return 'Nothing to run.'
