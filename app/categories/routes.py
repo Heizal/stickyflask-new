@@ -2,10 +2,12 @@ from flask import Blueprint, render_template, request, current_app
 from app.notes.models import Note
 from app.categories.models import Category, Tag,  NoteTag
 from .services.create_category import create_category
+from flask_login import login_required
 
 blueprint = Blueprint('categories', __name__)
 
 @blueprint.get('/checkout')
+@login_required
 def get_checkout():
   notes = Note.query.all()
 
